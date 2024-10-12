@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GoogleDriveFileWidget</fullName>
+    <types>
+        <members>GoogleDriveController</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>googleAuth</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>GoogleAuth__c.ClientId__c</members>
+        <members>GoogleAuth__c.ClientSecret__c</members>
+        <members>GoogleAuth__c.Expire_At__c</members>
+        <members>GoogleAuth__c.RedirectURI__c</members>
+        <members>GoogleAuth__c.Token__c</members>
+        <members>Opportunity.FolderId__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>GoogleAuth__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>googleDriveWidget</members>
+        <name>LightningComponentBundle</name>
+    </types>
+    <types>
+        <members>Google_API</members>
+        <members>Google_Auth_API</members>
+        <name>RemoteSiteSetting</name>
+    </types>
+    <version>58.0</version>
+</Package>

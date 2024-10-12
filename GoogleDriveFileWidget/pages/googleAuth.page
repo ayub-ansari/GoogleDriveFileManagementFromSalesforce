@@ -1,0 +1,10 @@
+<apex:page controller="GoogleDriveController" action="{!init}">
+   
+   <b> Thanks! your token has been refreshed successfully. Please resume the work you were doing.</b>
+   <!--
+   
+    https://accounts.google.com/o/oauth2/v2/auth?client_id=916044240566-chdno9bc680qivmn60md6i1lgcmoi5ce.apps.googleusercontent.com&redirect_uri=https://ayub-ansari-dev-ed.my.salesforce.com/apex/googleAuth&response_type=code&scope=https://www.googleapis.com/auth/drive.appdata%20https://www.googleapis.com/auth/drive.file%20https://www.googleapis.com/auth/drive.install%20https://www.googleapis.com/auth/userinfo.profile%20https://www.googleapis.com/auth/userinfo.email
+
+
+-->
+</apex:page>

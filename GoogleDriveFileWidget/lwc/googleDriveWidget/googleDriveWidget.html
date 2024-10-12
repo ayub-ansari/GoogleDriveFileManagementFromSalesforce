@@ -1,0 +1,93 @@
+<template>
+    <lightning-card>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <img class="slds-p-left_small" width="40" hieght="40" src="https://ayub-ansari-dev-ed.my.salesforce.com/servlet/servlet.ImageServer?id=015GC00000Ilk9P&oid=00D90000000opjN&lastMod=1728656765000"></img>
+                    <span class="slds-p-left_small" style="font-size:16px;font-weight:bolder;" >Google Drive</span>
+                </div>
+                 <div class="slds-col">
+                     <template if:true={showNewFolderButton}>
+                         <lightning-button label="Create a new Folder" onclick={newFolderRequest} variant="brand" class="slds-p-left_medium slds-m-bottom_small slds-m-top_small"></lightning-button>
+                     </template>     
+
+                    <template if:false={authError}>
+                       <template if:false={showNewFolderButton}>
+                        <lightning-button label="Add a New File" onclick={addNewFile} variant="neutral" class="slds-p-left_medium slds-m-bottom_small slds-m-top_small"></lightning-button>
+                       </template> 
+                    </template>  
+
+
+                 </div>
+            </div>
+
+            <div class="slds-grid slds-grid_vertical">
+              
+                <div class="slds-col slds-m-left_medium">
+                    <template if:false={authError}>
+                        <template if:false={showNewFolderButton}>
+                            
+                            <lightning-file-upload
+                            class="slds-p-left_medium slds-m-left_medium"
+                            label="Upload file to Drive Folder"
+                            name="fileUploader"
+                            accept={acceptedFormats}
+                            record-id={recordId}
+                            onuploadfinished={handleUploadFinished}
+
+                            >
+                            </lightning-file-upload>
+                        </template> 
+                    </template>  
+                </div>
+
+
+                <template if:true={authError}>
+                    <p class="slds-p-around_medium">{authError}</p>
+                    <a class="slds-p-around_medium" target="_blank" href="https://accounts.google.com/o/oauth2/v2/auth?client_id=916044240566-chdno9bc680qivmn60md6i1lgcmoi5ce.apps.googleusercontent.com&redirect_uri=https://ayub-ansari-dev-ed.my.salesforce.com/apex/googleAuth&response_type=code&scope=https://www.googleapis.com/auth/drive.appdata%20https://www.googleapis.com/auth/drive.file%20https://www.googleapis.com/auth/drive.install%20https://www.googleapis.com/auth/userinfo.profile%20https://www.googleapis.com/auth/userinfo.email">Authorize Google Drive Access</a>
+                </template>
+
+                <template if:true={message}>
+                    <p class="slds-p-around_medium"><b>{message}</b></p>
+                </template>
+                
+                 <template if:true={files}>
+                    <div class="slds-col slds-p-top_medium">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-labelledby="element-with-table-label other-element-with-table-label">
+                        <tbody>
+                           <template for:each={files} for:item="file"> 
+                             <tr class="slds-hint-parent" key={file.id}>
+                                <th data-label="File Name" scope="row">
+                                    <div style="width: 130px;" class="slds-truncate" title="file name">
+                                        <lightning-icon size="small" icon-name="doctype:image" alternative-text="Image file" title="Image"></lightning-icon>
+                                        <!--
+                                        <lightning-icon icon-name="doctype:audio" alternative-text="Audio file" title="Audio"></lightning-icon>
+                                        
+                                        <lightning-icon icon-name="doctype:mp4" alternative-text="MP4 file" title="MP4"></lightning-icon>
+                                        <lightning-icon icon-name="doctype:xml" alternative-text="XML file" title="XML"></lightning-icon>
+                                        -->
+
+                                         <a class="slds-truncate  slds-m-left_medium" title={file.name} href="#" tabindex="-1">{file.name}</a>
+                                    </div>
+                                </th>
+                                <td data-label="type">
+                                    <div class="slds-truncate" title="type">
+                                         <lightning-button-icon id={file.id}
+                                                icon-name="action:preview"
+                                                variant="bare"
+                                                onclick={preview}
+                                         ></lightning-button-icon>
+                                    </div>
+                                </td>
+                             </tr>
+                           </template>
+                        </tbody>
+                    </table>
+                    </div>
+
+                 </template>
+
+            
+            </div>
+
+    </lightning-card>
+</template>
